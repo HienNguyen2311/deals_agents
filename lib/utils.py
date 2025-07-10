@@ -221,3 +221,8 @@ def description(item):
     text = item.prompt.replace("How much does this cost to the nearest dollar?\n\n", "")
     return text.split("\n\nPrice is $")[0]
 
+def ensemble_pricer_predictor(agent):
+    def ensemble_pricer(item):
+        return max(0,agent.price(description(item)))
+    return ensemble_pricer
+

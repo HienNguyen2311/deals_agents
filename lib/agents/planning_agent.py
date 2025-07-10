@@ -1,9 +1,8 @@
 from typing import Optional, List
-from agents.agent import Agent
-from agents.deals import ScrapedDeal, DealSelection, Deal, Opportunity
-from agents.scanner_agent import ScannerAgent
-from agents.ensemble_agent import EnsembleAgent
-from agents.messaging_agent import MessagingAgent
+from lib.agents.agent import Agent
+from lib.agents.deals import Deal, Opportunity
+from lib.agents.scanner_agent import ScannerAgent
+from lib.agents.ensemble_agent import EnsembleAgent
 
 
 class PlanningAgent(Agent):
@@ -19,7 +18,6 @@ class PlanningAgent(Agent):
         self.log("Planning Agent is initializing")
         self.scanner = ScannerAgent()
         self.ensemble = EnsembleAgent(collection)
-        self.messenger = MessagingAgent()
         self.log("Planning Agent is ready")
 
     def run(self, deal: Deal) -> Opportunity:
@@ -39,7 +37,6 @@ class PlanningAgent(Agent):
         Run the full workflow:
         1. Use the ScannerAgent to find deals from RSS feeds
         2. Use the EnsembleAgent to estimate them
-        3. Use the MessagingAgent to send a notification of deals
         :param memory: a list of URLs that have been surfaced in the past
         :return: an Opportunity if one was surfaced, otherwise None
         """
@@ -50,8 +47,6 @@ class PlanningAgent(Agent):
             opportunities.sort(key=lambda opp: opp.discount, reverse=True)
             best = opportunities[0]
             self.log(f"Planning Agent has identified the best deal has discount ${best.discount:.2f}")
-            if best.discount > self.DEAL_THRESHOLD:
-                self.messenger.alert(best)
             self.log("Planning Agent has completed a run")
             return best if best.discount > self.DEAL_THRESHOLD else None
         return None

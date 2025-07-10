@@ -30,7 +30,7 @@ REVISION = None
 FINETUNED_MODEL = f"{HF_USER}/{PROJECT_RUN_NAME}"
 
 
-@app.function(image=llama_image, secrets=[modal.Secret.from_name("hf-secret")], gpu=GPU, timeout=1800)
+@app.function(image=llama_image, secrets=[modal.Secret.from_name("hf-secret")], gpu="A10G", timeout=1800)
 
 def price_llama(description: str) -> float:
 
@@ -64,7 +64,8 @@ def price_llama(description: str) -> float:
     set_seed(42)
     inputs = tokenizer.encode(prompt, return_tensors="pt").to("cuda")
     attention_mask = torch.ones(inputs.shape, device="cuda")
-    outputs = fine_tuned_model.generate(inputs, attention_mask=attention_mask, max_new_tokens=5, num_return_sequences=1)
+    outputs = fine_tuned_model.generate(inputs, attention_mask=attention_mask, max_new_tokens=5,
+                                        num_return_sequences=1)
     result = tokenizer.decode(outputs[0])
 
     contents = result.split("Price is $")[1]

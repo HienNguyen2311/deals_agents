@@ -1,17 +1,18 @@
+from pathlib import Path
 import pandas as pd
-from sklearn.linear_model import LinearRegression
 import joblib
+from lib.agents.agent import Agent
+from lib.agents.specialist_agent import SpecialistAgent
+from lib.agents.frontier_agent import FrontierAgent
 
-from agents.agent import Agent
-from agents.specialist_agent import SpecialistAgent
-from agents.frontier_agent import FrontierAgent
-from agents.random_forest_agent import RandomForestAgent
+cwd = Path.cwd()
+model_path = Path(cwd)/"output"/'models'/'ensemble_model.pkl'
 
 class EnsembleAgent(Agent):
 
     name = "Ensemble Agent"
     color = Agent.YELLOW
-    
+
     def __init__(self, collection):
         """
         Create an instance of Ensemble, by creating each of the models
@@ -20,8 +21,7 @@ class EnsembleAgent(Agent):
         self.log("Initializing Ensemble Agent")
         self.specialist = SpecialistAgent()
         self.frontier = FrontierAgent(collection)
-        self.random_forest = RandomForestAgent()
-        self.model = joblib.load('ensemble_model.pkl')
+        self.model = joblib.load(str(model_path))
         self.log("Ensemble Agent is ready")
 
     def price(self, description: str) -> float:
@@ -32,16 +32,16 @@ class EnsembleAgent(Agent):
         :param description: the description of a product
         :return: an estimate of its price
         """
-        self.log("Running Ensemble Agent - collaborating with specialist, frontier and random forest agents")
-        specialist = self.specialist.price(description)
+        self.log("Running Ensemble Agent - collaborating with specialist and frontier agents")
+        specialist_gpt = self.specialist.price(description, "gpt")
+        specialist_llama = self.specialist.price(description, "llama")
         frontier = self.frontier.price(description)
-        random_forest = self.random_forest.price(description)
         X = pd.DataFrame({
-            'Specialist': [specialist],
+            'GPT Specialist': [specialist_gpt],
+            'Llama Specialist': [specialist_llama],
             'Frontier': [frontier],
-            'RandomForest': [random_forest],
-            'Min': [min(specialist, frontier, random_forest)],
-            'Max': [max(specialist, frontier, random_forest)],
+            'Min': [min(specialist_gpt, specialist_llama, frontier)],
+            'Max': [max(specialist_gpt, specialist_llama, frontier)],
         })
         y = max(0, self.model.predict(X)[0])
         self.log(f"Ensemble Agent complete - returning ${y:.2f}")

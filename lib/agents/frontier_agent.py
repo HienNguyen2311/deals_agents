@@ -2,16 +2,12 @@
 
 import os
 import re
-import math
-import json
 from typing import List, Dict
 from openai import OpenAI
 from sentence_transformers import SentenceTransformer
-from datasets import load_dataset
-import chromadb
 from lib.items import Item
-from lib.utils import Tester
 from lib.agents.agent import Agent
+import torch
 
 
 class FrontierAgent(Agent):
@@ -38,6 +34,8 @@ class FrontierAgent(Agent):
             self.log("Frontier Agent is setting up with OpenAI")
         self.collection = collection
         self.model = SentenceTransformer('sentence-transformers/all-MiniLM-L6-v2')
+        if torch.cuda.is_available():
+            self.model = self.model.to("cuda")
         self.log("Frontier Agent is ready")
 
     def make_context(self, similars: List[str], prices: List[float]) -> str:
