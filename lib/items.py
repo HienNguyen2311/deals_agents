@@ -18,7 +18,10 @@ class Item:
     tokenizer = AutoTokenizer.from_pretrained(BASE_MODEL, trust_remote_code=True)
     PREFIX = "Price is $"
     QUESTION = "How much does this cost to the nearest dollar?"
-    REMOVALS = ['"Batteries Included?": "No"', '"Batteries Included?": "Yes"', '"Batteries Required?": "No"', '"Batteries Required?": "Yes"', "By Manufacturer", "Item", "Date First", "Package", ":", "Number of", "Best Sellers", "Number", "Product "]
+    REMOVALS = ['"Batteries Included?": "No"', '"Batteries Included?": "Yes"',
+                '"Batteries Required?": "No"', '"Batteries Required?": "Yes"',
+                "By Manufacturer", "Item", "Date First", "Package", ":", "Number of", "Best Sellers",
+                "Number", "Product "]
 
     title: str
     price: float

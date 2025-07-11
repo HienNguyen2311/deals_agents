@@ -7,9 +7,11 @@ from dotenv import load_dotenv
 import chromadb
 from lib.agents.planning_agent import PlanningAgent
 from lib.agents.deals import Opportunity
-from sklearn.manifold import TSNE
-import numpy as np
+# from sklearn.manifold import TSNE
+# import numpy as np
+from pathlib import Path
 
+cwd = Path.cwd()
 
 # Colors for logging
 BG_BLUE = '\033[44m'
@@ -35,8 +37,8 @@ def init_logging():
 
 class DealAgentFramework:
 
-    DB = "products_vectorstore"
-    MEMORY_FILENAME = "memory.json"
+    DB = Path(cwd)/"output"/"products_vectorstore"
+    MEMORY_FILENAME = Path(cwd)/"output"/'models'/'memory.json'
 
     def __init__(self):
         init_logging()

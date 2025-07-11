@@ -1,5 +1,3 @@
-import os
-import json
 from typing import Optional, List
 from openai import OpenAI
 from lib.agents.deals import ScrapedDeal, DealSelection

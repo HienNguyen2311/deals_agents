@@ -150,8 +150,8 @@ class App:
             with gr.Row():
                 with gr.Column(scale=1):
                     logs = gr.HTML()
-                with gr.Column(scale=1):
-                    plot = gr.Plot(value=get_plot(), show_label=False)
+                # with gr.Column(scale=1):
+                #     plot = gr.Plot(value=get_plot(), show_label=False)
 
             ui.load(run_with_logging, inputs=[log_data], outputs=[log_data, logs, opportunities_dataframe])
 
