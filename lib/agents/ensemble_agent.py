@@ -118,5 +118,5 @@ class EnsembleTester:
         self.report()
 
     @classmethod
-    def test(cls, function, data):
-        cls(function, data).run()
+    def test(cls, function, data, size=250):
+        cls(function, data, size=size).run()
