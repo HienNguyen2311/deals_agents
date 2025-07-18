@@ -15,7 +15,7 @@ class FrontierAgent(Agent):
     name = "Frontier Agent"
     color = Agent.BLUE
 
-    MODEL = "gpt-4o-mini"
+    MODEL = "gpt-4o-2024-08-06"
 
     def __init__(self, collection):
         """
@@ -30,7 +30,7 @@ class FrontierAgent(Agent):
             self.log("Frontier Agent is set up with DeepSeek")
         else:
             self.client = OpenAI()
-            self.MODEL = "gpt-4o-mini"
+            self.MODEL = "gpt-4o-2024-08-06"
             self.log("Frontier Agent is setting up with OpenAI")
         self.collection = collection
         self.model = SentenceTransformer('sentence-transformers/all-MiniLM-L6-v2')
