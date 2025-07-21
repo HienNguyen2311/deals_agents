@@ -40,9 +40,9 @@ pip install -r requirements.txt
 Create an `.env` file in thr root directory and fill in your API keys.
 
 ```
-<p>OPENAI_API_KEY=</p>
-<p>HF_TOKEN=</p>
-<p>WANDB_API_KEY=</p>
+OPENAI_API_KEY=
+HF_TOKEN=
+WANDB_API_KEY=
 ```
 
 4. Additional Setup:
