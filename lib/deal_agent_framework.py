@@ -7,8 +7,8 @@ from dotenv import load_dotenv
 import chromadb
 from lib.agents.planning_agent import PlanningAgent
 from lib.agents.deals import Opportunity
-# from sklearn.manifold import TSNE
-# import numpy as np
+from sklearn.manifold import TSNE
+import numpy as np
 from pathlib import Path
 
 cwd = Path.cwd()
@@ -81,18 +81,18 @@ class DealAgentFramework:
             self.write_memory()
         return self.memory
 
-    # @classmethod
-    # def get_plot_data(cls, max_datapoints=10000):
-    #     client = chromadb.PersistentClient(path=cls.DB)
-    #     collection = client.get_or_create_collection('products')
-    #     result = collection.get(include=['embeddings', 'documents', 'metadatas'], limit=max_datapoints)
-    #     vectors = np.array(result['embeddings'])
-    #     documents = result['documents']
-    #     categories = [metadata['category'] for metadata in result['metadatas']]
-    #     colors = [COLORS[CATEGORIES.index(c)] for c in categories]
-    #     tsne = TSNE(n_components=3, random_state=42, n_jobs=-1)
-    #     reduced_vectors = tsne.fit_transform(vectors)
-    #     return documents, reduced_vectors, colors
+    @classmethod
+    def get_plot_data(cls, max_datapoints=10000):
+        client = chromadb.PersistentClient(path=cls.DB)
+        collection = client.get_or_create_collection('products')
+        result = collection.get(include=['embeddings', 'documents', 'metadatas'], limit=max_datapoints)
+        vectors = np.array(result['embeddings'])
+        documents = result['documents']
+        categories = [metadata['category'] for metadata in result['metadatas']]
+        colors = [COLORS[CATEGORIES.index(c)] for c in categories]
+        tsne = TSNE(n_components=3, random_state=42, n_jobs=-1)
+        reduced_vectors = tsne.fit_transform(vectors)
+        return documents, reduced_vectors, colors
 
 
 if __name__=="__main__":

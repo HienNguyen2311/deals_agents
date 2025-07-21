@@ -34,8 +34,8 @@ class FrontierAgent(Agent):
             self.log("Frontier Agent is setting up with OpenAI")
         self.collection = collection
         self.model = SentenceTransformer('sentence-transformers/all-MiniLM-L6-v2')
-        if torch.cuda.is_available():
-            self.model = self.model.to("cuda")
+        # if torch.cuda.is_available():
+        #     self.model = self.model.to("cuda")
         self.log("Frontier Agent is ready")
 
     def make_context(self, similars: List[str], prices: List[float]) -> str:

@@ -29,14 +29,14 @@ def find_similars(item, collection, model):
     return documents, prices
 
 def rag_pricer_predictor(documents, prices, collection, model):
-    def gpt_4o_mini_rag(item):
+    def gpt_4o_rag(item):
         documents, prices = find_similars(item, collection, model)
         response = client.chat.completions.create(
-            model="gpt-4o-mini",
+            model="gpt-4o-2024-08-06",
             messages=rag_messages_for(item, documents, prices),
             seed=42,
             max_tokens=5
         )
         reply = response.choices[0].message.content
         return get_price(reply)
-    return gpt_4o_mini_rag
+    return gpt_4o_rag
