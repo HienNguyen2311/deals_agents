@@ -37,7 +37,7 @@ pip install -r requirements.txt
 
 3. Set up environment variables:
 
-Create an `.env` file in thr root directory and fill in your API keys.
+Create an `.env` file in the root directory and fill in your API keys.
 
 ```
 OPENAI_API_KEY=
@@ -115,8 +115,7 @@ The Project Report presents a synthesis of the project's methodology, experiment
 
 * The system’s user interface presents dynamic logs, predictions, and visual deal summaries, showcasing how LLM-driven reasoning can be surfaced transparently for real-time decision-making
 
-It should be noted that this project was largely adapted from "LLM En-
-gineering - Master AI and LLMs" repository by Edward Donner. The automated data pipeline, visualizations, and model evaluation methodologies were primarily based on examples and approaches presented in this repository.
+It should be noted that this project was largely adapted from "LLM Engineering - Master AI and LLMs" repository by Edward Donner. The automated data pipeline, visualizations, and model evaluation methodologies were primarily based on examples and approaches presented in this repository.
 
 ## Screenshots
 
