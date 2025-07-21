@@ -117,4 +117,7 @@ gineering - Master AI and LLMs" repository by Edward Donner. The automated data 
 ## Screenshots
 
 ![User interface with Gradio](img/interface.png)
-User interface with Gradio
+User interface with Gradio showing deal predictions and agent logs (Time 1)
+
+![User interface with Gradio](img/interface2.png)
+User interface with Gradio after user interaction, displaying updated predictions and visualizations (Time 2)
