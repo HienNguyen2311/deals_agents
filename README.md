@@ -18,9 +18,8 @@ This project delivers a modular, agent-based system for automated product price 
 
 
 - Python 3.10+ recommended
-- **Virtual environment:** All required packages are already installed and stored in the `llms` directory inside the project root.
 - (Optional) CUDA-enabled GPU for efficient model training/inference
-- Access to relevant API keys (OpenAI, HuggingFace, Modal)
+- Access to relevant API keys (OpenAI, HuggingFace, Modal, Weight and Bias)
 
 ### Setup Instructions
 
@@ -29,17 +28,22 @@ This project delivers a modular, agent-based system for automated product price 
 git clone https://github.com/HienNguyen2311/deals_agents
 cd deals_agents
 ```
-2. Activate the provided virtual environment:
-* For Unix/macOS: ```source llms/bin/activate```
-* For Windows (Command Prompt): ```llms\Scripts\activate```
+2. Rebuild environment from `requirements.txt`
+```
+python -m venv llms
+source llms/bin/activate  # or llms\Scripts\activate on Windows
+pip install -r requirements.txt
+```
 
 3. Set up environment variables:
 
-Fill in your API keys in your `.env` file.
+Create an `.env` file in thr root directory and fill in your API keys.
 
+```
 <p>OPENAI_API_KEY=</p>
 <p>HF_TOKEN=</p>
 <p>WANDB_API_KEY=</p>
+```
 
 4. Additional Setup:
 
