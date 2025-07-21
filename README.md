@@ -1,4 +1,4 @@
-# Smart Agentic Price Prediction Framework
+# Agentic Price Prediction Framework
 
 This project delivers a modular, agent-based system for automated product price estimation and deal discovery within the e-commerce space. Leveraging large language models (LLMs), including both GPT and fine-tuned open-source models, classical machine learning and state-of-the-art retrieval and embedding technologies, the framework enables robust and explainable price predictions on product listings. Visual dashboards and real-time interactions are powered through Gradio/Plotly. On the other hand, data management utilizes Chroma and scalable cloud platforms such as Modal.
 
