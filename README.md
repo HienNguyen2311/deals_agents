@@ -26,8 +26,8 @@ This project delivers a modular, agent-based system for automated product price 
 
 1. Clone this repository
 ```
-git clone https://github.com/HienNguyen2311/deals-agents
-cd deals-agents
+git clone https://github.com/HienNguyen2311/deals_agents
+cd deals_agents
 ```
 2. Activate the provided virtual environment:
 * For Unix/macOS: ```source llms/bin/activate```
@@ -37,9 +37,9 @@ cd deals-agents
 
 Fill in your API keys in your `.env` file.
 
-OPENAI_API_KEY=
-HF_TOKEN=
-WANDB_API_KEY=
+<p>OPENAI_API_KEY=</p>
+<p>HF_TOKEN=</p>
+<p>WANDB_API_KEY=</p>
 
 4. Additional Setup:
 
@@ -49,6 +49,8 @@ WANDB_API_KEY=
 * Once the `llms` virtual environment is activated, you can proceed to run the application as described in the Usage section.
 
 ## Usage
+
+### Program Descriptions
 
 * ```data_preprocessed.ipynb```: This notebook loads and filters multiple retail product datasets from Hugging Face (e.g., Appliances, Electronics), analyzes missing values, and outputs cleaned .pkl files containing structured training/test data with prices for use across the pipeline.
 * ```price_prediction.ipynb```: It trains and benchmarks various pricing models, including Random Forests, Word2Vec embeddings, and fine-tuned language models. The file produces metrics visualizations and serialized fine-tuned models for comparison.
@@ -79,6 +81,8 @@ WANDB_API_KEY=
 
 ## Project Report
 
+The Project Report presents a synthesis of the project's methodology, experimental setup, and results. Key findings include:
+
 1. Fine-Tuning Improves Model Specialization for Price Prediction
 
 * Fine-tuning Meta's LLaMA-3.1 using QLoRA led to a substantial performance improvement, reducing Mean Absolute Error (MAE) from 95.49 to 24.99, nearly matching the performance of much larger proprietary models like GPT-4o
@@ -106,6 +110,9 @@ WANDB_API_KEY=
 5. Live System Demonstrates Real-Time Human-AI Interaction
 
 * The system’s user interface presents dynamic logs, predictions, and visual deal summaries, showcasing how LLM-driven reasoning can be surfaced transparently for real-time decision-making
+
+It should be noted that this project was largely adapted from "LLM En-
+gineering - Master AI and LLMs" repository by Edward Donner. The automated data pipeline, visualizations, and model evaluation methodologies were primarily based on examples and approaches presented in this repository.
 
 ## Screenshots
 
